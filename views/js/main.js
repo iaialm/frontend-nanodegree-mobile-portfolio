@@ -414,9 +414,9 @@ var resizePizzas = function(size) {
     function sizeSwitcher (size) {
       switch(size) {
         case "1":
-          return 0.25;
+          return 0.5;
         case "2":
-          return 0.3333;
+          return 0.5;
         case "3":
           return 0.5;
         default:
@@ -445,7 +445,7 @@ var resizePizzas = function(size) {
   window.performance.mark("mark_end_resize");
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
-  console.log("Time to resize pizzas: " + timeToResize[timeToResize.length-1].duration + "ms");
+  console.log("Time to resize pizzas: " + timeToResize[timeToResize.length].duration + "ms");
 };
 
 window.performance.mark("mark_start_generating"); // collect timing data
