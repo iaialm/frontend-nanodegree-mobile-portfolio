@@ -414,9 +414,9 @@ var resizePizzas = function(size) {
     function sizeSwitcher (size) {
       switch(size) {
         case "1":
-          return 0.5;
+          return 0.25;
         case "2":
-          return 0.5;
+          return 0.3333;
         case "3":
           return 0.5;
         default:
@@ -431,11 +431,13 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    for (var i = 0; i < document.getElementsByClassName(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.getElementsByClassName(".randomPizzaContainer")[0], size);
-      var newwidth = (document.getElementsByClassName(".randomPizzaContainer")[0].offsetWidth + dx) + 'px';
-      document.getElementsByClassName(".randomPizzaContainer")[0].style.width = newwidth;
+ function changePizzaSizes(size) {
+      var dm = document.getElementsByClassName("randomPizzaContainer");
+      var dx = determineDx(dm[0], size);
+      var newwidth = (dm[0].offsetWidth + dx) + 'px';
+    for (var i = 0; i < dm.length; i++) {
+
+      dm[i].style.width = newwidth;
     }
   }
 
@@ -445,8 +447,7 @@ var resizePizzas = function(size) {
   window.performance.mark("mark_end_resize");
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
-  console.log("Time to resize pizzas: " + timeToResize[timeToResize.length].duration + "ms");
-};
+console.log("Time to resize pizzas: " + timeToResize[timeToResize.length-1].duration + "ms");};
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
